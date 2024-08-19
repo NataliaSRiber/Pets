@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { Pet, PetService } from '../pet.service';
+import { Component, Input } from '@angular/core';
+import { Pet } from '../pet.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
@@ -10,44 +10,9 @@ import { FormsModule } from '@angular/forms';
   templateUrl: './pets-list.component.html',
   styleUrl: './pets-list.component.css'
 })
-export class PetsListComponent implements OnInit {
-  pets: Pet[] = [];
-  filteredPets: Pet[] = [];
-  isLoading =  true;
-  searchQuery = '';
+export class PetsListComponent {
 
-  constructor(private petService: PetService){}
-  ngOnInit(): void {
-      this.loadPets();
-  }
-
-  loadPets(): void {
-    this.petService.getPets().subscribe({
-      next: (data) => {
-        this.pets = data;
-        this.filteredPets = data;
-        this.isLoading = false;
-      },
-      error: (err) => {
-        console.error('Error searching pets', err);
-        this.isLoading = false;
-      }
-    });
-  }
-
-  notFoundMessage = '';
-
-  onSearch(): void {
-    if (this.searchQuery.trim()) {
-      this.petService.searchPets(this.searchQuery).subscribe({
-        next: (data) => {
-          this.filteredPets = data;
-        }
-      });
-    } else {
-      this.notFoundMessage = 'Animal não encontrado!';
-      setTimeout(() => this.notFoundMessage = '', 3000);
-      this.filteredPets = this.pets;
-    }
-    }
-  }
+@Input() pets: Pet[] = [];
+@Input() isLoading =  true;
+@Input() notFoundMessage = '';
+}
