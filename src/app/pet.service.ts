@@ -19,14 +19,15 @@ export class PetService {
   private pets: Pet[] = [
     { id: 1, name: 'Rex', tutor: 'Rihanna', species: 'dog', breed: 'German Shepherd', age: 5, notes: 'Very friendly' },
     { id: 2, name: 'Whiskers', tutor: 'Britney', species: 'cat', breed: 'Siamese', age: 3 },
-    { id: 3, name: 'Bella', tutor: 'Beyoncé', species: 'dog', breed: 'Labrador', age: 2, notes: 'Loves to play fetch' }
+    { id: 3, name: 'Bella', tutor: 'Beyoncé', species: 'dog', breed: 'Labrador', age: 2, notes: 'Loves to play fetch' },
+    { id: 4, name: 'Goldie', tutor: 'Shakira', species: 'Fish', breed: 'Betta', age: 1, notes: 'Loves to swin'  }
   ];
   constructor() { }
 
   getPets(): Observable<Pet[]> {
     // return this.http.get<Pet[]>(this.apiUrl);
     return of(this.pets).pipe(
-      delay(4000)
+      delay(1000)
     )
   }
 
@@ -34,8 +35,6 @@ export class PetService {
   searchPets(query: string): Observable<Pet[]> {
     const lowerQuery = query.toLowerCase();
     const filteredPets = this.pets.filter((pet) => pet.name.toLowerCase().includes(lowerQuery) || (pet.tutor && pet.tutor.toLowerCase().includes(lowerQuery)));
-    return of(filteredPets).pipe(
-      delay(4000)
-    );
+    return of(filteredPets);
   }
 }
