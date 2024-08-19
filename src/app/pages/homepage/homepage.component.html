@@ -1,1 +1,10 @@
-<p>homepage works!</p>
+<div class="container mx-auto p-6 bg-white rounded-lg max-w-lg">
+  <div class="mb-4">
+    <input
+    type="text"
+    class="w-full p-2 border border-gray-300 rounded"
+    placeholder="Search product"
+    />
+  </div>
+</div>
+<app-products-card [cards]="cards" [isLoading]="isLoading" [notFoundMessage]="notFoundMessage"></app-products-card>
