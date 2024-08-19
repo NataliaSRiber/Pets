@@ -78,4 +78,10 @@ export class HomeServiceService {
     const filteredCard = this.cards.find(card => card.id === id);
     return of(filteredCard)
   }
+
+  searchProducts(query: string): Observable<Card[]> {
+    const lowerQuery = query.toLowerCase();
+    const filteredProducts = this.cards.filter((card) => card.name.toLowerCase().includes(lowerQuery) || (card.description && card.description.toLowerCase().includes(lowerQuery)));
+    return of(filteredProducts);
+  }
 }
