@@ -1,0 +1,12 @@
+/* admin.component.css */
+.admin-container {
+  display: flex;
+}
+
+.sidebar {
+  min-width: 16rem;
+}
+
+.active {
+  font-weight: bold;
+}
