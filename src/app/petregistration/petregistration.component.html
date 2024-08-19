@@ -1,0 +1,70 @@
+<div class="container mx-auto p-6 bg-white shadow-md rounded-lg max-w-lg">
+  <h1 class="text-2xl font-bold mb-4 text-center text-gray-800">Pet Registration</h1>
+  <form (ngSubmit)="onSubmit(petForm)" #petForm="ngForm" class="space-y-4">
+    <div class="form-group">
+      <label for="petName" class="block text-sm font-medium text-gray-700">Tutor's name:</label>
+      <input type="text" id="tutorName" name="tutorName" [(ngModel)]="pet.tutor" required
+        class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" #tutorName="ngModel">
+      <div *ngIf="tutorName.invalid && (tutorName.dirty || tutorName.touched)" class="text-red-600 text-sm">
+        Tutor's name is required.
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="petName" class="block text-sm font-medium text-gray-700">Pet Name:</label>
+      <input type="text" id="petName" name="petName" [(ngModel)]="pet.name" required
+        class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" #petName="ngModel">
+      <div *ngIf="petName.invalid && (petName.dirty || petName.touched)" class="text-red-600 text-sm">
+        Pet Name is required.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="species" class="block text-sm font-medium text-gray-700">Species:</label>
+      <select id="species" name="species" [(ngModel)]="pet.species" required
+        class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" #species="ngModel">
+        <option value="">Select species</option>
+        <option value="dog">Dog</option>
+        <option value="cat">Cat</option>
+        <option value="bird">Bird</option>
+        <option value="reptile">Reptile</option>
+        <option value="other">Other</option>
+      </select>
+      <div *ngIf="species.invalid && (species.dirty || species.touched)" class="text-red-600 text-sm">
+        Species is required.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="breed" class="block text-sm font-medium text-gray-700">Breed:</label>
+      <input type="text" id="breed" name="breed" [(ngModel)]="pet.breed" required
+        class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" #breed="ngModel">
+      <div *ngIf="breed.invalid && (breed.dirty || breed.touched)" class="text-red-600 text-sm">
+        Breed is required.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="age" class="block text-sm font-medium text-gray-700">Age (in years):</label>
+      <input type="number" id="age" name="age" [(ngModel)]="pet.age" min="0" required
+        class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" #age="ngModel">
+      <div *ngIf="age.invalid && (age.dirty || age.touched)" class="text-red-600 text-sm">
+        Age is required and must be a non-negative number.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="notes" class="block text-sm font-medium text-gray-700">Notes:</label>
+      <textarea id="notes" name="notes" [(ngModel)]="pet.notes"
+        class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"></textarea>
+    </div>
+
+    <button type="submit" [disabled]="petForm.invalid"
+      class="w-full bg-indigo-600 text-white py-2 px-4 rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+      Register Pet
+    </button>
+  </form>
+    <!-- Success Message -->
+    <div *ngIf="successMessage" class="mt-4 p-2 bg-green-100 text-green-800 rounded">
+      {{ successMessage }}
+    </div>
+</div>

@@ -1,0 +1,33 @@
+<div class="container mx-auto p-6 bg-white shadow-md rounded-lg max-w-lg">
+  <h1 class="text-2xl font-bold mb-4 text-center">Registered Pets</h1>
+
+  <div class="mb-4">
+    <input
+      type="text"
+      [(ngModel)]="searchQuery"
+      (ngModelChange)="onSearch()"
+      class="w-full p-2 border border-gray-300 rounded"
+      placeholder="Search by pet name or tutor name"
+    />
+  </div>
+  @if (isLoading) {
+    <div class="text-center text-gray-500">Loading...</div>
+  }
+
+  <ul *ngIf="!isLoading">
+    @for (pet of filteredPets; track $index) {
+      <li class="mb-4 p-4 border border-gray-300 rounded">
+        <h2 class="text-xl font-bold">{{ pet.name }}</h2>
+        <p><strong>Species:</strong> {{ pet.species }}</p>
+        <p><strong>Breed:</strong> {{ pet.breed }}</p>
+        <p><strong>Age:</strong> {{ pet.age }} years</p>
+        <p *ngIf="pet.notes"><strong>Notes:</strong> {{ pet.notes }}</p>
+        <p *ngIf="pet.tutor"><strong>Tutor:</strong> {{ pet.tutor }}</p>
+      </li>
+    }
+  </ul>
+  <div *ngIf="notFoundMessage" class="mt-4 p-2 bg-green-100 text-green-800 rounded">
+    {{ notFoundMessage }}
+  </div>
+</div>
+
