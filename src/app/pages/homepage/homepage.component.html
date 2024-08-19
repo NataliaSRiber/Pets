@@ -4,6 +4,8 @@
     type="text"
     class="w-full p-2 border border-gray-300 rounded"
     placeholder="Search product"
+    [(ngModel)]="searchQuery"
+    (ngModelChange)="onSearchProduct($event)"
     />
   </div>
 </div>
