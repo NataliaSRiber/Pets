@@ -27,7 +27,6 @@ export class LoginComponent {
         } else if (role === 'user') {
           this.router.navigate(['/user']);
         } else {
-          console.error('Unknown role:', role);
           this.router.navigate(['/not-found']);
         }
       } else {
