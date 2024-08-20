@@ -41,11 +41,17 @@ export class HomepageComponent implements OnInit {
       this.homeService.searchProducts(query).subscribe({
         next: (data) => {
           this.cards = data;
-          this.notFoundMessage = data.length === 0 ? 'Product not found!' : ''
+          this.notFoundMessage = data.length === 0 ? 'Product not found!' : '';
+
+          if (data.length === 0) {
+            setTimeout(() => {
+              this.loadCards()
+              this.notFoundMessage = ''
+            }, 3000)
+          }
         }
       });
     } else {
-      this.loadCards();
       this.notFoundMessage = '';
     }
   }
